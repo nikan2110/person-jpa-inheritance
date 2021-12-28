@@ -21,8 +21,6 @@ import telran.b7a.person.model.Child;
 import telran.b7a.person.model.Employee;
 import telran.b7a.person.model.Person;
 
-
-
 @Service
 public class PersonServiceImpl implements PersonService {
 	
@@ -110,15 +108,7 @@ public class PersonServiceImpl implements PersonService {
 	public PersonDto updatePersonAddress(Integer id, AddressDto newAddress) {
 		Person person =	getPerson(id);
 		Address address = person.getAddress();
-		if (newAddress.getBuilding() != null) {
-			address.setBuilding(newAddress.getBuilding());
-		}
-		if (newAddress.getCity() != null) {
-			address.setCity(newAddress.getCity());
-		}
-		if (newAddress.getStreet() != null) {
-			address.setStreet(newAddress.getStreet());
-		}
+		checkAddress(address, newAddress);
 		EmployeeDto employeeDto = modelMapper.map(person, EmployeeDto.class);
 		ChildDto childDto = modelMapper.map(person, ChildDto.class);
 		if (employeeDto.getCompany() != null && employeeDto.getSalary() != null) {
@@ -128,6 +118,19 @@ public class PersonServiceImpl implements PersonService {
 			return childDto;
 		}
 		return modelMapper.map(person, PersonDto.class);
+	}
+
+	private void checkAddress(Address address, AddressDto newAddress) {
+		if (newAddress.getBuilding() != null) {
+			address.setBuilding(newAddress.getBuilding());
+		}
+		if (newAddress.getCity() != null) {
+			address.setCity(newAddress.getCity());
+		}
+		if (newAddress.getStreet() != null) {
+			address.setStreet(newAddress.getStreet());
+		}
+		
 	}
 
 	@Override

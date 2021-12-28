@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import telran.b7a.person.dto.AddressDto;
 import telran.b7a.person.dto.AgeDto;
+import telran.b7a.person.dto.ChangeNameDto;
 import telran.b7a.person.dto.CityPopulationDto;
 import telran.b7a.person.dto.PersonDto;
 import telran.b7a.person.service.PersonService;
@@ -43,8 +44,8 @@ public class PersonController {
 	}
 	
 	@PutMapping("/name/{id}")
-	public PersonDto updatePersonName(@PathVariable Integer id, @RequestBody PersonDto personDto) {
-		return personService.updatePersonName(id, personDto.getName());
+	public PersonDto updatePersonName(@PathVariable Integer id, @RequestBody ChangeNameDto newName) {
+		return personService.updatePersonName(id, newName.getName());
 	}
 	
 	@PutMapping("/address/{id}")
