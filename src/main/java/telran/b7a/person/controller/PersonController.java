@@ -15,6 +15,7 @@ import telran.b7a.person.dto.AgeDto;
 import telran.b7a.person.dto.ChangeNameDto;
 import telran.b7a.person.dto.CityPopulationDto;
 import telran.b7a.person.dto.PersonDto;
+import telran.b7a.person.dto.SalaryDto;
 import telran.b7a.person.service.PersonService;
 
 @RestController
@@ -71,6 +72,16 @@ public class PersonController {
 	@GetMapping("/population/city")
 	public Iterable<CityPopulationDto> getCityPopulationDto() {
 		return personService.getCityPopulation();
+	}
+	
+	@GetMapping("/employees/salary")
+	public Iterable<PersonDto> findEmployeesBySalary(@RequestBody SalaryDto salary){
+		return personService.findEmployeeBySalary(salary.getMinSalary(), salary.getMaxSalary());
+	}
+	
+	@GetMapping("/children")
+	public Iterable<PersonDto> getChildren(){
+		return personService.getChildren();
 	}
 	
 	

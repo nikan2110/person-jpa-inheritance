@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import telran.b7a.person.dto.CityPopulationDto;
+import telran.b7a.person.model.Child;
+import telran.b7a.person.model.Employee;
 import telran.b7a.person.model.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Integer> {
@@ -21,5 +23,12 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
 	
 	@Query("select new telran.b7a.person.dto.CityPopulationDto(p.address.city, count(p)) from Person p group by p.address.city order by count(p) desc")
 	List<CityPopulationDto> getPopulationCity();
+	
+	Stream<Employee> findBySalaryBetween(int min, int max);
+	
+//	@Query(value = "SELECT * FROM PERSONS WHERE KINDERGARTEN IS NOT NULL",nativeQuery = true)
+//	Stream<Child> findByKindergartenNotNull();
+	Stream<Child> findChildrenBy();
+
 
 }

@@ -1,6 +1,6 @@
 package telran.b7a.person.dto;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString
-@JsonTypeName("child")
 public class ChildDto extends PersonDto {
 	
 	String kindergarten;
+
+	public ChildDto(Integer id, String name, LocalDate birthDate, AddressDto address, String kindergarten) {
+		super(id, name, birthDate, address);
+		this.kindergarten = kindergarten;
+	}
+	
+	
 
 }

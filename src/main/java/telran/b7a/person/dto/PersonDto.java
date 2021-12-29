@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import lombok.AllArgsConstructor;
@@ -18,8 +19,10 @@ import lombok.ToString;
 @Getter
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-	@JsonSubTypes.Type(value = ChildDto.class, name = "child"),
-	@JsonSubTypes.Type(value = EmployeeDto.class, name = "employee")
+	@Type(value = ChildDto.class, name = "child"),
+	@Type(value = EmployeeDto.class, name = "employee"),
+	@Type(value = PersonDto.class, name = "person")
+	
 })
 @ToString
 public class PersonDto {
